@@ -1,0 +1,11 @@
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\bin\Debug\netcoreapp2.0\Projeto_Barbar.deps.json
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\bin\Debug\netcoreapp2.0\Projeto_Barbar.runtimeconfig.json
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\bin\Debug\netcoreapp2.0\Projeto_Barbar.runtimeconfig.dev.json
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\bin\Debug\netcoreapp2.0\Projeto_Barbar.dll
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\bin\Debug\netcoreapp2.0\Projeto_Barbar.pdb
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.csproj.CoreCompileInputs.cache
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.AssemblyInfoInputs.cache
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.AssemblyInfo.cs
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.dll
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.pdb
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.csprojResolveAssemblyReference.cache

@@ -1,0 +1,86 @@
+﻿@model Projeto_Barbar.Models.ViewModel.Consultas.Cadastro
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+<h2>Cadastrar</h2>
+<h4>Consulta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Cadastrar">
+            <div class="col-md-9">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Usua_Chave" class="control-label"></label>
+                    <input asp-for="Usua_Chave" class="form-control" />
+                    <span asp-validation-for="Usua_Chave" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <textarea asp-for="Descricao" style="resize:none;" class="form-control" rows="5" cols="30"></textarea>
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="SQL" class="control-label"></label>
+                        <textarea asp-for="SQL" style="resize: vertical; min-height: 200px;" rows="10" cols="30" class="form-control"></textarea>
+                        <span asp-validation-for="SQL" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6" style="margin-top: 2.7%;">
+                        <table class="table table-bordered table-hover" id="tab_logic">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <th class="text-center">Nome</th>
+                                    <th class="text-center">Apelido</th>
+                                    <th class="text-center">Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id='addr0'>
+                                    <td align="center">
+                                        <button class="btn btn-sm btn-danger">Deletar</button>
+                                    </td>
+                                    <td>Nome</td>
+                                    <td>
+                                        <input type="text" name='descricao' placeholder='Apelido' class="form-control" />
+                                    </td>
+                                    <td>
+                                        <select asp-items="@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))" class="form-control">
+                                            <option>Selecione...</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr id='addr1'></tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><button class="btn btn-sm btn-primary">Atualizar Quadro</button></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Cadastrar" class="btn btn-lg btn-success" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
