@@ -6,20 +6,20 @@ namespace Projeto_Barbar.Models.ViewModel.Consultas
     public class Cadastro
     {
         [Display(Name = "Nome da Consulta")]
-        [Required]
+        [Required(ErrorMessage = "O campo Nome da Consulta é obrigatório.")]
         [MaxLength(50)]
         public string Nome { get; set; }
 
         [Display(Name = "Descrição da Consulta")]
-        [Required]
+        [Required(ErrorMessage = "O campo Descrição da Consulta é obrigatório.")]
         [MaxLength(150)]
         public string Descricao { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O campo Código SQL é obrigatório.")]
         [Display(Name = "Código SQL")]
         public string SQL { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O campo Matrícula do Usuário Chave é obrigatório.")]
         [Display(Name = "Matricula do Usuario Chave")]
         public long Usua_Chave { get; set; }
         

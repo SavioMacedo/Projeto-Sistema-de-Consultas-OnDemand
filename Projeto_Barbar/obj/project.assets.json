@@ -13149,7 +13149,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\savio\\.nuget\\packages\\": {},
+    "C:\\Users\\crist\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13158,17 +13158,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\savio\\Documents\\Visual Studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\Projeto_Barbar.csproj",
+      "projectUniqueName": "C:\\Users\\crist\\Documents\\GitHub\\Projeto-Sistema-de-Consultas-OnDemand\\Projeto_Barbar\\Projeto_Barbar.csproj",
       "projectName": "Projeto_Barbar",
-      "projectPath": "C:\\Users\\savio\\Documents\\Visual Studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\Projeto_Barbar.csproj",
-      "packagesPath": "C:\\Users\\savio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\savio\\Documents\\Visual Studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\obj\\",
+      "projectPath": "C:\\Users\\crist\\Documents\\GitHub\\Projeto-Sistema-de-Consultas-OnDemand\\Projeto_Barbar\\Projeto_Barbar.csproj",
+      "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\crist\\Documents\\GitHub\\Projeto-Sistema-de-Consultas-OnDemand\\Projeto_Barbar\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\savio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -76,7 +76,7 @@ namespace Projeto_Barbar.Models.BLL
             };
 
             _unitOfWork.GetRepository<Assoc_usua_consu>().Insert(usuario_chave);
-            _unitOfWork.GetRepository<Assoc_usua_consu>().Insert(usuario_chave);
+            _unitOfWork.GetRepository<Assoc_usua_consu>().Insert(usuario_criador);
              await _unitOfWork.SaveChangesAsync();
         }
 
