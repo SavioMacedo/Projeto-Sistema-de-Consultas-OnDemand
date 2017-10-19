@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using Projeto_Barbar.Models.BLL;
+using Projeto_Barbar.Models.ViewModel.Consultas;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Projeto_Barbar.Controllers
 {
@@ -31,6 +33,23 @@ namespace Projeto_Barbar.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CadastrarAsync(Cadastro cadastro)
+        {
+           if(ModelState.IsValid)
+            {
+                using (ConsultaLogics consulta_logica = new ConsultaLogics(_unitOfWork))
+                {
+                    await consulta_logica.InserirAsync(cadastro);
+                }
+                return RedirectToAction("Index");
+            }
+
+
+
+            return View(cadastro);
         }
 
     }

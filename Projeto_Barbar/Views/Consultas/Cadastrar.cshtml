@@ -7,7 +7,7 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Cadastrar">
+        <form asp-controller="Consultas" asp-action="CadastrarAsync" method="post" >
             <div class="col-md-9">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -56,7 +56,7 @@
                                     </td>
                                     <td>
                                         <select asp-items="@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))" class="form-control">
-                                            <option>Selecione...</option>
+                                            <option>Selecione ...</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -81,6 +81,8 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<script>
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
