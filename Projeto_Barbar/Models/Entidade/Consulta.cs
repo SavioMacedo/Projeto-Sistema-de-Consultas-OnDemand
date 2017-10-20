@@ -15,6 +15,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Data.Common;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
@@ -28,6 +30,8 @@ namespace Model
             OnCreated();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual long ID
         {
             get;
