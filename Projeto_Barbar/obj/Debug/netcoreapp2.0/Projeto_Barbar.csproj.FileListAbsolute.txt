@@ -19,3 +19,4 @@ C:\Users\crist\Documents\GitHub\Projeto-Sistema-de-Consultas-OnDemand\Projeto_Ba
 C:\Users\crist\Documents\GitHub\Projeto-Sistema-de-Consultas-OnDemand\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.AssemblyInfo.cs
 C:\Users\crist\Documents\GitHub\Projeto-Sistema-de-Consultas-OnDemand\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.dll
 C:\Users\crist\Documents\GitHub\Projeto-Sistema-de-Consultas-OnDemand\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.pdb
+C:\Users\savio\documents\visual studio 2017\Projects\Projeto_Barbar\Projeto_Barbar\obj\Debug\netcoreapp2.0\Projeto_Barbar.csprojResolveAssemblyReference.cache

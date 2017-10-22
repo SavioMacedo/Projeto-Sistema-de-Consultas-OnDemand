@@ -19,6 +19,11 @@ namespace Projeto_Barbar.Models.BLL
             _unitOfWork = unitOfWork;
         }
 
+        public Consulta ListarConsulta (long Id)
+        {
+            return _unitOfWork.GetRepository<Consulta>().Find(Id);
+        }
+
         public async Task InserirAsync(Cadastro cadastro)
         {
             Consulta consulta = new Consulta
@@ -87,6 +92,11 @@ namespace Projeto_Barbar.Models.BLL
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public List<Consulta> ListarConsultas()
+        {
+            return new List<Consulta>(_unitOfWork.GetRepository<Consulta>().GetPagedList().Items).ToList();
         }
 
         protected virtual void Dispose(bool disposing)

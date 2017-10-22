@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entidade;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto_Barbar.Models.BLL;
 using Projeto_Barbar.Models.ViewModels.Consultas;
@@ -29,6 +30,17 @@ namespace Projeto_Barbar.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult Ver(long Id)
+        {
+            Consulta consulta;
+            using (ConsultaLogics logica = new ConsultaLogics(_unitOfWork))
+            {
+                consulta = logica.ListarConsulta(Id);
+            }
+
+            return View(consulta);
         }
 
         [HttpPost]

@@ -65,3 +65,20 @@ header
 {
     border-radius: 0px !important;
 }
+
+div.panel
+{
+    border-radius: 0px !important;
+}
+
+tr.linha-clicavel
+{
+    cursor:pointer;
+    color: rgb(0, 114, 254);
+}
+
+tr.linha-clicavel:hover
+{
+    border-left:5px solid;
+    background-color: lightgray;
+}

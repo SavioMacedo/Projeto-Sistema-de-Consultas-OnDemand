@@ -64,6 +64,9 @@
     <property name="ConsultaID" type="Int64" p1:ValidateRequired="true" p1:Guid="b150e294-dfdc-4abb-a060-6e8416801ffe">
       <column name="" not-null="False" />
     </property>
+    <property name="IC_ATIVO" type="String" p1:ValidateRequired="true" p1:Guid="4a0cb435-5855-42df-ae8c-2ccfd69620bb">
+      <column name="" />
+    </property>
   </class>
   <class name="Entidade.SQL_LINHA" entity-set="SQL_LINHAs" p1:Guid="5747d4cf-c24a-4878-9a38-25a7eb3bd210">
     <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="394674d1-9666-485e-aba2-398e4155d086">
@@ -100,8 +103,8 @@
     <property name="NOME" type="String" p1:ValidateRequired="true" p1:Guid="b7726c41-8f3f-42f2-8047-1716633c5886">
       <column name="" />
     </property>
-    <property name="PARAMETRO_CONSULTAID" type="Int64" p1:ValidateRequired="true" p1:Guid="bda268e5-c109-4a61-8105-7f29859bc347">
-      <column name="" not-null="False" />
+    <property name="NM_LABEL" type="String" p1:ValidateRequired="true" p1:Guid="ee8f58d0-2a55-4870-acdb-5149392aa977">
+      <column name="" />
     </property>
   </class>
   <class name="Entidade.Tipo_Associacao" entity-set="Tipo_Associacaos" p1:Guid="83cb5929-462b-49f9-9d9d-a1f460d28a52">
@@ -170,14 +173,6 @@
         <property name="VersaoID" />
       </end2>
     </association>
-    <association name="PARAMETRO_CONSULTA_Tipo_Parametro" cardinality="OneToMany" p1:Guid="ac0e2866-03c5-47eb-b5ef-14b759c0daad">
-      <end1 multiplicity="One" name="PARAMETRO_CONSULTA" class="Tipo_Parametro" relation-class="PARAMETRO_CONSULTA" constrained="True" p1:inheritance-modifier="None" p1:Guid="12b5a885-a127-4f51-8a63-5d7404f5f084">
-        <property name="ID" />
-      </end1>
-      <end2 multiplicity="Many" name="Tipo_Parametros" class="PARAMETRO_CONSULTA" relation-class="Tipo_Parametro" p1:Guid="37b30dcf-489a-4374-b44a-1f09dc0f848a">
-        <property name="PARAMETRO_CONSULTAID" />
-      </end2>
-    </association>
     <association name="Tipo_Associacao_Assoc_usua_consu" cardinality="OneToMany" p1:Guid="0152c8ac-370c-4a4a-9553-f876fb3f44c6">
       <end1 multiplicity="One" name="Tipo_Associacao" class="Assoc_usua_consu" relation-class="Tipo_Associacao" constrained="True" p1:inheritance-modifier="None" p1:Guid="488e4a94-eaaa-4237-ba4d-51ee45b6f6cb">
         <property name="ID" />
@@ -200,6 +195,14 @@
       </end1>
       <end2 multiplicity="Many" name="Assoc_usua_consus" class="Consulta" relation-class="Assoc_usua_consu" p1:Guid="b8a4300e-b859-4bad-acde-6f555715295f">
         <property name="ConsultaID" />
+      </end2>
+    </association>
+    <association name="PARAMETRO_CONSULTA_Tipo_Parametro" cardinality="OneToOne" p1:Guid="daf089b1-68d1-4b6e-afff-289b99864dd3">
+      <end1 multiplicity="One" name="PARAMETRO_CONSULTA" class="Tipo_Parametro" relation-class="PARAMETRO_CONSULTA" constrained="True" p1:Guid="0616ab7a-bf77-4370-bb8e-6f3fc513e94c">
+        <property name="VersaoID" />
+      </end1>
+      <end2 multiplicity="One" name="Tipo_Parametro" class="PARAMETRO_CONSULTA" relation-class="Tipo_Parametro" constrained="False" p1:Guid="17123bb0-337e-4da6-b298-f7a74ead7c39">
+        <property name="ID" />
       </end2>
     </association>
   </associations>

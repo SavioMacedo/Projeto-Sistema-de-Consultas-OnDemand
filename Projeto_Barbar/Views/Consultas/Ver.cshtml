@@ -1,0 +1,35 @@
+﻿@model Entidade.Consulta
+@using Entidade
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Parametrização
+            </div>
+            <form asp-controller="Consultas" asp-action="Executar" method="post">
+            <div class="panel-body">
+                @if(Model.Versaos.First().PARAMETRO_CONSULTAs == null)
+                {
+                    <p>Esta consulta não necessita de preenchimentos adicionais. Apenas clique no botão <strong>Executar</strong></p>
+                }
+                else
+                {
+                    foreach (PARAMETRO_CONSULTA parametro in Model.Versaos.Where(x => x.IC_ATIVO == "Sim").Select(x => x.PARAMETRO_CONSULTAs).ToList())
+                    {
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="@parametro.NOME" class="control-label"></label>
+                                <input name="@parametro.DESCRICAO" class="form-control" type="@parametro.Tipo_Parametro.NM_LABEL" required/>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-success">Executar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
