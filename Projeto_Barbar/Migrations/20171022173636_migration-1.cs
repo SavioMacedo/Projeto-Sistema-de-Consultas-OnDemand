@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Projeto_Barbar.Migrations
 {
-    public partial class migracao_inicial : Migration
+    public partial class migration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,10 +12,12 @@ namespace Projeto_Barbar.Migrations
                 name: "Consultas",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "INTEGER", nullable: false),
+                    ID = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     DESCRICAO = table.Column<string>(type: "TEXT", nullable: false),
                     DT_CRIACAO = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    IC_ATIVO = table.Column<string>(type: "TEXT", nullable: false)
+                    IC_ATIVO = table.Column<string>(type: "TEXT", nullable: false),
+                    NOME = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,7 +28,8 @@ namespace Projeto_Barbar.Migrations
                 name: "Tipo_Associacaos",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "INTEGER", nullable: false),
+                    ID = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     TP_ASSOC = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -53,7 +56,8 @@ namespace Projeto_Barbar.Migrations
                 name: "Versaos",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "INTEGER", nullable: false),
+                    ID = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ConsultaID = table.Column<long>(type: "INTEGER", nullable: false),
                     DESCRICAO = table.Column<string>(type: "TEXT", nullable: false),
                     DT_CRIACAO = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -74,7 +78,8 @@ namespace Projeto_Barbar.Migrations
                 name: "Assoc_usua_consus",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "INTEGER", nullable: false),
+                    ID = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ConsultaID = table.Column<long>(type: "INTEGER", nullable: false),
                     DT_CRIACAO = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Tipo_AssociacaoID = table.Column<long>(type: "INTEGER", nullable: false),
@@ -107,7 +112,8 @@ namespace Projeto_Barbar.Migrations
                 name: "Atualizas",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "INTEGER", nullable: false),
+                    ID = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ConsultaID = table.Column<long>(type: "INTEGER", nullable: false),
                     DESCRICAO = table.Column<string>(type: "TEXT", nullable: false),
                     DT_ATUALIZACAO = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -134,7 +140,8 @@ namespace Projeto_Barbar.Migrations
                 name: "PARAMETRO_CONSULTAs",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "INTEGER", nullable: false),
+                    ID = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     DESCRICAO = table.Column<string>(type: "TEXT", nullable: false),
                     NOME = table.Column<string>(type: "TEXT", nullable: false),
                     VersaoID = table.Column<long>(type: "INTEGER", nullable: false)
@@ -175,7 +182,8 @@ namespace Projeto_Barbar.Migrations
                 name: "Tipo_Parametros",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "INTEGER", nullable: false),
+                    ID = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     NOME = table.Column<string>(type: "TEXT", nullable: false),
                     PARAMETRO_CONSULTAID = table.Column<long>(type: "INTEGER", nullable: false)
                 },

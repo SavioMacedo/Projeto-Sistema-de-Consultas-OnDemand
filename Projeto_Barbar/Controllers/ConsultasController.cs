@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Model;
 using Projeto_Barbar.Models.BLL;
-using Projeto_Barbar.Models.ViewModel.Consultas;
-using System.Collections.Generic;
-using System.Linq;
+using Projeto_Barbar.Models.ViewModels.Consultas;
 using System.Threading.Tasks;
 
 namespace Projeto_Barbar.Controllers

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\DAL\Contexto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.UnitOfWork" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
@@ -15,7 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\DAL\Interfaces\" />
+    <None Update="Models\Modelo\Modelo.efml">
+      <Generator>DevartEFCoreGenerator</Generator>
+      <LastGenOutput>Modelo.info</LastGenOutput>
+    </None>
+    <None Update="Models\Modelo\Modelo.info">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Modelo.efml</DependentUpon>
+    </None>
   </ItemGroup>
 
 </Project>

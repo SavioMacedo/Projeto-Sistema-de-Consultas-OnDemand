@@ -10,9 +10,9 @@ using System;
 
 namespace Projeto_Barbar.Migrations
 {
-    [DbContext(typeof(Contexto))]
-    [Migration("20171015063335_migration-3.0")]
-    partial class migration30
+    [DbContext(typeof(Modelo))]
+    [Migration("20171022173636_migration-1")]
+    partial class migration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,9 +20,10 @@ namespace Projeto_Barbar.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("Model.Assoc_usua_consu", b =>
+            modelBuilder.Entity("Entidade.Assoc_usua_consu", b =>
                 {
                     b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("ID");
 
                     b.Property<long>("ConsultaID")
@@ -49,9 +50,10 @@ namespace Projeto_Barbar.Migrations
                     b.ToTable("Assoc_usua_consus");
                 });
 
-            modelBuilder.Entity("Model.Atualiza", b =>
+            modelBuilder.Entity("Entidade.Atualiza", b =>
                 {
                     b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("ID");
 
                     b.Property<long>("ConsultaID")
@@ -77,10 +79,10 @@ namespace Projeto_Barbar.Migrations
                     b.ToTable("Atualizas");
                 });
 
-            modelBuilder.Entity("Model.Consulta", b =>
+            modelBuilder.Entity("Entidade.Consulta", b =>
                 {
                     b.Property<long>("ID")
-                        .HasColumnName("ID");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("DESCRICAO")
                         .IsRequired()
@@ -94,16 +96,19 @@ namespace Projeto_Barbar.Migrations
                         .IsRequired()
                         .HasColumnName("IC_ATIVO");
 
-                    b.Property<string>("NOME");
+                    b.Property<string>("NOME")
+                        .IsRequired()
+                        .HasColumnName("NOME");
 
                     b.HasKey("ID");
 
                     b.ToTable("Consultas");
                 });
 
-            modelBuilder.Entity("Model.PARAMETRO_CONSULTA", b =>
+            modelBuilder.Entity("Entidade.PARAMETRO_CONSULTA", b =>
                 {
                     b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("ID");
 
                     b.Property<string>("DESCRICAO")
@@ -114,23 +119,17 @@ namespace Projeto_Barbar.Migrations
                         .IsRequired()
                         .HasColumnName("NOME");
 
-                    b.Property<long>("PARAMETRO_CONSULTAID");
-
-                    b.Property<long>("Tipo_ParametroID");
-
                     b.Property<long>("VersaoID")
                         .HasColumnName("VersaoID");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("PARAMETRO_CONSULTAID");
 
                     b.HasIndex("VersaoID");
 
                     b.ToTable("PARAMETRO_CONSULTAs");
                 });
 
-            modelBuilder.Entity("Model.SQL_LINHA", b =>
+            modelBuilder.Entity("Entidade.SQL_LINHA", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
@@ -154,9 +153,10 @@ namespace Projeto_Barbar.Migrations
                     b.ToTable("SQL_LINHAs");
                 });
 
-            modelBuilder.Entity("Model.Tipo_Associacao", b =>
+            modelBuilder.Entity("Entidade.Tipo_Associacao", b =>
                 {
                     b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("ID");
 
                     b.Property<string>("TP_ASSOC")
@@ -168,21 +168,27 @@ namespace Projeto_Barbar.Migrations
                     b.ToTable("Tipo_Associacaos");
                 });
 
-            modelBuilder.Entity("Model.Tipo_Parametro", b =>
+            modelBuilder.Entity("Entidade.Tipo_Parametro", b =>
                 {
                     b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("ID");
 
                     b.Property<string>("NOME")
                         .IsRequired()
                         .HasColumnName("NOME");
 
+                    b.Property<long>("PARAMETRO_CONSULTAID")
+                        .HasColumnName("PARAMETRO_CONSULTAID");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("PARAMETRO_CONSULTAID");
 
                     b.ToTable("Tipo_Parametros");
                 });
 
-            modelBuilder.Entity("Model.Usuario", b =>
+            modelBuilder.Entity("Entidade.Usuario", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
@@ -205,9 +211,10 @@ namespace Projeto_Barbar.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("Model.Versao", b =>
+            modelBuilder.Entity("Entidade.Versao", b =>
                 {
                     b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("ID");
 
                     b.Property<long>("ConsultaID")
@@ -231,61 +238,64 @@ namespace Projeto_Barbar.Migrations
                     b.ToTable("Versaos");
                 });
 
-            modelBuilder.Entity("Model.Assoc_usua_consu", b =>
+            modelBuilder.Entity("Entidade.Assoc_usua_consu", b =>
                 {
-                    b.HasOne("Model.Consulta", "Consulta")
+                    b.HasOne("Entidade.Consulta", "Consulta")
                         .WithMany("Assoc_usua_consus")
                         .HasForeignKey("ConsultaID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Model.Tipo_Associacao", "Tipo_Associacao")
+                    b.HasOne("Entidade.Tipo_Associacao", "Tipo_Associacao")
                         .WithMany("Assoc_usua_consus")
                         .HasForeignKey("Tipo_AssociacaoID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Model.Usuario", "Usuario")
+                    b.HasOne("Entidade.Usuario", "Usuario")
                         .WithMany("Assoc_usua_consus")
                         .HasForeignKey("UsuarioID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Model.Atualiza", b =>
+            modelBuilder.Entity("Entidade.Atualiza", b =>
                 {
-                    b.HasOne("Model.Consulta", "AtualizaConsulta")
+                    b.HasOne("Entidade.Consulta", "AtualizaConsulta")
                         .WithMany("Atualizas")
                         .HasForeignKey("ConsultaID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Model.Usuario", "Usuario")
+                    b.HasOne("Entidade.Usuario", "Usuario")
                         .WithMany("Atualiza")
                         .HasForeignKey("UsuarioID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Model.PARAMETRO_CONSULTA", b =>
+            modelBuilder.Entity("Entidade.PARAMETRO_CONSULTA", b =>
                 {
-                    b.HasOne("Model.Tipo_Parametro", "Tipo_Parametro")
-                        .WithMany("PARAMETRO_CONSULTAs")
-                        .HasForeignKey("PARAMETRO_CONSULTAID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Model.Versao", "Versao")
+                    b.HasOne("Entidade.Versao", "Versao")
                         .WithMany("PARAMETRO_CONSULTAs")
                         .HasForeignKey("VersaoID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Model.SQL_LINHA", b =>
+            modelBuilder.Entity("Entidade.SQL_LINHA", b =>
                 {
-                    b.HasOne("Model.Versao", "Versao")
+                    b.HasOne("Entidade.Versao", "Versao")
                         .WithMany("SQL_LINHAs")
                         .HasForeignKey("VersaoID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Model.Versao", b =>
+            modelBuilder.Entity("Entidade.Tipo_Parametro", b =>
                 {
-                    b.HasOne("Model.Consulta", "Consulta")
+                    b.HasOne("Entidade.PARAMETRO_CONSULTA", "PARAMETRO_CONSULTA")
+                        .WithMany("Tipo_Parametros")
+                        .HasForeignKey("PARAMETRO_CONSULTAID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Entidade.Versao", b =>
+                {
+                    b.HasOne("Entidade.Consulta", "Consulta")
                         .WithMany("Versaos")
                         .HasForeignKey("ConsultaID")
                         .OnDelete(DeleteBehavior.Cascade);

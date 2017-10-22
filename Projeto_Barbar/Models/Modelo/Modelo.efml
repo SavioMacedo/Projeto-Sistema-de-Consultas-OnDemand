@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore context-namespace="Persistencia" namespace="Entidade" p1:name="Modelo" p1:Guid="c66f5ff8-5631-4bcb-9640-ce032e009ceb" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="Entidade.Usuario" entity-set="Usuarios" p1:Guid="ef09ffd3-d0a0-42ba-975b-e4407b104498">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="f1f03886-050a-4058-8608-16a58ad9d633">
+      <column name="" />
+    </id>
+    <property name="NOME" type="String" p1:ValidateRequired="true" p1:Guid="52ca8407-a743-4a02-822b-c773d2120c8d">
+      <column name="" />
+    </property>
+    <property name="SENHA" type="String" p1:ValidateRequired="true" p1:Guid="fafbb9db-bbb7-4967-8450-d33c70660836">
+      <column name="" />
+    </property>
+    <property name="EMAIL" type="String" p1:ValidateRequired="true" p1:Guid="e1f7a0ec-c203-45ab-91cc-c07ae6705ef9">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Entidade.Atualiza" entity-set="Atualizas" p1:Guid="c002af04-1f08-49a3-974f-7a4f4b41e66b">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="57724b24-9afe-4985-b59c-a0b95b400722">
+      <column name="" />
+    </id>
+    <property name="DT_ATUALIZACAO" type="DateTime" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="4255a4e5-1998-4f79-a9c8-37b245783bae">
+      <column name="" />
+    </property>
+    <property name="DESCRICAO" type="String" p1:ValidateRequired="true" p1:Guid="a7e2e046-b1a9-4c5c-a134-3f103e048eca">
+      <column name="" />
+    </property>
+    <property name="ConsultaID" type="Int64" p1:ValidateRequired="true" p1:Guid="bf40f585-3a38-4384-8679-f37c5337f0b7">
+      <column name="" not-null="False" />
+    </property>
+    <property name="UsuarioID" type="Int64" p1:ValidateRequired="true" p1:Guid="75c060ac-dc71-40b2-8ac9-1509ef62f238">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <class name="Entidade.Consulta" entity-set="Consultas" p1:Guid="641ee26e-5060-429c-a640-4ca4ad0b69dd">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="b8c4bdfd-ee88-4d8c-b349-c02b17f0843a">
+      <column name="" />
+    </id>
+    <property name="DESCRICAO" type="String" p1:ValidateRequired="true" p1:Guid="c1a538ff-84ad-410c-8fb1-bd58d4c1a7e4">
+      <column name="" />
+    </property>
+    <property name="DT_CRIACAO" type="DateTime" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="baa9577e-adb8-48b8-bc08-b04dca01b6b5">
+      <column name="" />
+    </property>
+    <property name="IC_ATIVO" type="String" p1:ValidateRequired="true" p1:Guid="8bcb7a78-1db7-4042-ba9b-83c9f2f4f3e1">
+      <column name="" />
+    </property>
+    <property name="NOME" type="String" p1:ValidateRequired="true" p1:Guid="10e5029c-337d-47de-872f-28bc912e81d3">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Entidade.Versao" entity-set="Versaos" p1:Guid="b37bde3c-00cd-4092-96ee-f24816d1f3e7">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="7c2313bd-5904-4e56-91aa-9425e2abc0c8">
+      <column name="" />
+    </id>
+    <property name="NU_VERSAO" type="Int16" p1:ValidateRequired="true" p1:Guid="c8325198-5c75-4480-bcd2-1ccc7d217452">
+      <column name="" />
+    </property>
+    <property name="DT_CRIACAO" type="DateTime" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="4126e6d6-a768-407b-99eb-55be38dc006a">
+      <column name="" />
+    </property>
+    <property name="DESCRICAO" type="String" p1:ValidateRequired="true" p1:Guid="174d13d8-645d-4951-ad42-b60a47b28c7a">
+      <column name="" />
+    </property>
+    <property name="ConsultaID" type="Int64" p1:ValidateRequired="true" p1:Guid="b150e294-dfdc-4abb-a060-6e8416801ffe">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <class name="Entidade.SQL_LINHA" entity-set="SQL_LINHAs" p1:Guid="5747d4cf-c24a-4878-9a38-25a7eb3bd210">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="394674d1-9666-485e-aba2-398e4155d086">
+      <column name="" />
+    </id>
+    <property name="NU_LINHA" type="String" p1:ValidateRequired="true" p1:Guid="f4218433-3c78-4e79-95fa-5caa9aebd68c">
+      <column name="" />
+    </property>
+    <property name="SQL" type="String" p1:ValidateRequired="true" p1:Guid="24ceb09d-cb15-4f3e-83c5-d8e6e49575aa">
+      <column name="" />
+    </property>
+    <property name="VersaoID" type="Int64" p1:ValidateRequired="true" p1:Guid="f71c0f90-a20a-4d7b-84d3-e969438f836c">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <class name="Entidade.PARAMETRO_CONSULTA" entity-set="PARAMETRO_CONSULTAs" p1:Guid="80170e07-e10b-4781-9073-6e5c8684220b">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="04c2fbd8-c2f8-4642-80e3-93d4373a712d">
+      <column name="" />
+    </id>
+    <property name="NOME" type="String" p1:ValidateRequired="true" p1:Guid="162d8339-1235-44dc-83ba-bed3040c9492">
+      <column name="" />
+    </property>
+    <property name="DESCRICAO" type="String" p1:ValidateRequired="true" p1:Guid="8628e891-1cf6-4fbe-a90f-798a6a6b71fc">
+      <column name="" />
+    </property>
+    <property name="VersaoID" type="Int64" p1:ValidateRequired="true" p1:Guid="15cbd4d2-ee81-459b-a9bd-5ebf8c09bcdc">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <class name="Entidade.Tipo_Parametro" entity-set="Tipo_Parametros" p1:Guid="b203690c-48c9-487e-85eb-fbe6adaab545">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="034f31f1-3b9c-4edf-9290-3a01252afab3">
+      <column name="" />
+    </id>
+    <property name="NOME" type="String" p1:ValidateRequired="true" p1:Guid="b7726c41-8f3f-42f2-8047-1716633c5886">
+      <column name="" />
+    </property>
+    <property name="PARAMETRO_CONSULTAID" type="Int64" p1:ValidateRequired="true" p1:Guid="bda268e5-c109-4a61-8105-7f29859bc347">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <class name="Entidade.Tipo_Associacao" entity-set="Tipo_Associacaos" p1:Guid="83cb5929-462b-49f9-9d9d-a1f460d28a52">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="133f172f-6c0e-41ad-bdc5-fa6ba05fc747">
+      <column name="" />
+    </id>
+    <property name="TP_ASSOC" type="String" p1:ValidateRequired="true" p1:Guid="a2bf9f61-bcff-46d3-afae-9b931c0f3c01">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Entidade.Assoc_usua_consu" entity-set="Assoc_usua_consus" p1:Guid="5ec52198-c415-4da4-b6db-d2e1aef2947e">
+    <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="290d3f31-0806-4309-b375-b0efa8371421">
+      <column name="" />
+    </id>
+    <property name="DT_CRIACAO" type="DateTime" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="2b6dacdb-3d4c-46ba-89d8-b5be79fbbff0">
+      <column name="" />
+    </property>
+    <property name="Tipo_AssociacaoID" type="Int64" p1:ValidateRequired="true" p1:Guid="6b930c84-4f38-401a-a272-e0d31f59ecfc">
+      <column name="" not-null="False" />
+    </property>
+    <property name="UsuarioID" type="Int64" p1:ValidateRequired="true" p1:Guid="703f3d90-3450-47a2-9a7e-e0ee876ea136">
+      <column name="" not-null="False" />
+    </property>
+    <property name="ConsultaID" type="Int64" p1:ValidateRequired="true" p1:Guid="d43a6d24-6465-4dc2-99e8-2bedc8a2dd0e">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <associations>
+    <association name="Consulta_Atualiza" cardinality="OneToMany" p1:Guid="e406d02f-3f0b-45b0-b0f1-96530967a7ec">
+      <end1 multiplicity="One" name="AtualizaConsulta" class="Atualiza" relation-class="Consulta" constrained="True" p1:inheritance-modifier="None" p1:Guid="96458086-7fab-4282-a0fb-1664c59f327e">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="Atualizas" class="Consulta" relation-class="Atualiza" p1:Guid="4f51184a-d8be-407e-b279-61bbe66e8c2a">
+        <property name="ConsultaID" />
+      </end2>
+    </association>
+    <association name="Usuario_Atualiza" cardinality="OneToMany" p1:Guid="10b3a8e4-a93b-4ebe-b0bd-85d7cb47959c">
+      <end1 multiplicity="One" name="Usuario" class="Atualiza" relation-class="Usuario" constrained="True" p1:inheritance-modifier="None" p1:Guid="9e90afea-0146-4784-91af-4f978a1854c7">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="Atualiza" class="Usuario" relation-class="Atualiza" p1:Guid="0410f3ec-ff8b-453d-be52-ff5bb9d1ccdd">
+        <property name="UsuarioID" />
+      </end2>
+    </association>
+    <association name="Consulta_Versao" cardinality="OneToMany" p1:Guid="7ef0d6ce-6516-47b9-9f2b-5f0c4aa38eb8">
+      <end1 multiplicity="One" name="Consulta" class="Versao" relation-class="Consulta" constrained="True" p1:inheritance-modifier="None" p1:Guid="5405fc53-e330-4e7d-88cd-7d50c8cb9118">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="Versaos" class="Consulta" relation-class="Versao" p1:Guid="b5cfb5c0-f62e-4f1f-a4e5-9be160ad76f8">
+        <property name="ConsultaID" />
+      </end2>
+    </association>
+    <association name="Versao_SQL_LINHA" cardinality="OneToMany" p1:Guid="8bed201d-c169-4cbd-b613-a1ca0db82241">
+      <end1 multiplicity="One" name="Versao" class="SQL_LINHA" relation-class="Versao" constrained="True" p1:inheritance-modifier="None" p1:Guid="fc284412-d865-47e2-bcdd-2f0805275b8c">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="SQL_LINHAs" class="Versao" relation-class="SQL_LINHA" p1:Guid="8d6719c1-0619-461d-a082-d60c5d3b3a59">
+        <property name="VersaoID" />
+      </end2>
+    </association>
+    <association name="Versao_PARAMETRO_CONSULTA" cardinality="OneToMany" p1:Guid="5e8c82ec-a87d-471a-bcc9-d9c633d40816">
+      <end1 multiplicity="One" name="Versao" class="PARAMETRO_CONSULTA" relation-class="Versao" constrained="True" p1:inheritance-modifier="None" p1:Guid="05315167-98b2-4731-aaaf-4726c9b0aab9">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="PARAMETRO_CONSULTAs" class="Versao" relation-class="PARAMETRO_CONSULTA" p1:Guid="6fefaf88-e0f5-47f1-bddf-283b5d8c3ee5">
+        <property name="VersaoID" />
+      </end2>
+    </association>
+    <association name="PARAMETRO_CONSULTA_Tipo_Parametro" cardinality="OneToMany" p1:Guid="ac0e2866-03c5-47eb-b5ef-14b759c0daad">
+      <end1 multiplicity="One" name="PARAMETRO_CONSULTA" class="Tipo_Parametro" relation-class="PARAMETRO_CONSULTA" constrained="True" p1:inheritance-modifier="None" p1:Guid="12b5a885-a127-4f51-8a63-5d7404f5f084">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="Tipo_Parametros" class="PARAMETRO_CONSULTA" relation-class="Tipo_Parametro" p1:Guid="37b30dcf-489a-4374-b44a-1f09dc0f848a">
+        <property name="PARAMETRO_CONSULTAID" />
+      </end2>
+    </association>
+    <association name="Tipo_Associacao_Assoc_usua_consu" cardinality="OneToMany" p1:Guid="0152c8ac-370c-4a4a-9553-f876fb3f44c6">
+      <end1 multiplicity="One" name="Tipo_Associacao" class="Assoc_usua_consu" relation-class="Tipo_Associacao" constrained="True" p1:inheritance-modifier="None" p1:Guid="488e4a94-eaaa-4237-ba4d-51ee45b6f6cb">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="Assoc_usua_consus" class="Tipo_Associacao" relation-class="Assoc_usua_consu" p1:Guid="61186279-7140-45c2-ab6b-86d265b5f92e">
+        <property name="Tipo_AssociacaoID" />
+      </end2>
+    </association>
+    <association name="Usuario_Assoc_usua_consu" cardinality="OneToMany" p1:Guid="d999452f-759d-48a6-b8f0-5f7945f41d26">
+      <end1 multiplicity="One" name="Usuario" class="Assoc_usua_consu" relation-class="Usuario" constrained="True" p1:inheritance-modifier="None" p1:Guid="2cb75adf-efe2-4b68-b2a3-c98812b3c6e1">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="Assoc_usua_consus" class="Usuario" relation-class="Assoc_usua_consu" p1:Guid="42491d1f-1ac8-475c-a2bd-e920bb0c046d">
+        <property name="UsuarioID" />
+      </end2>
+    </association>
+    <association name="Consulta_Assoc_usua_consu" cardinality="OneToMany" p1:Guid="651a8fb5-2be6-450a-8391-801b1d9cda07">
+      <end1 multiplicity="One" name="Consulta" class="Assoc_usua_consu" relation-class="Consulta" constrained="True" p1:inheritance-modifier="None" p1:Guid="7d12b437-df1c-41e9-8b95-71c9efbb5c8a">
+        <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="Assoc_usua_consus" class="Consulta" relation-class="Assoc_usua_consu" p1:Guid="b8a4300e-b859-4bad-acde-6f555715295f">
+        <property name="ConsultaID" />
+      </end2>
+    </association>
+  </associations>
+</efcore>

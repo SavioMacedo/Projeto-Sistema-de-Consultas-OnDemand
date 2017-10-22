@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Persistencia;
 
 namespace Projeto_Barbar
 {
@@ -21,8 +20,8 @@ namespace Projeto_Barbar
         {
             services.AddMvc();
 
-            services.AddDbContext<Contexto>(configurar => configurar.UseSqlite("Data Source=database.db"));
-            services.AddUnitOfWork<Contexto>();
+            services.AddDbContext<Persistencia.Modelo>(configurar => configurar.UseSqlite("Data Source=database.db"));
+            services.AddUnitOfWork<Persistencia.Modelo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

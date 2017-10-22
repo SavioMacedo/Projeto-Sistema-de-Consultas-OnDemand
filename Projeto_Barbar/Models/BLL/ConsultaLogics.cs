@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Entidade;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.SafeHandles;
-using Model;
-using Projeto_Barbar.Models.ViewModel.Consultas;
+using Projeto_Barbar.Models.ViewModels.Consultas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace Projeto_Barbar.Models.BLL
             };
 
             _unitOfWork.GetRepository<Consulta>().Insert(consulta);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
 
             Versao versao = new Versao
             {
@@ -41,7 +41,7 @@ namespace Projeto_Barbar.Models.BLL
             };
 
             _unitOfWork.GetRepository<Versao>().Insert(versao);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
 
             List<string> SQL_Splitado = cadastro.SQL.Split("/n").ToList();
 
