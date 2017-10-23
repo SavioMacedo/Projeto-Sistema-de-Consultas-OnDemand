@@ -11,8 +11,8 @@ using System;
 namespace Projeto_Barbar.Migrations
 {
     [DbContext(typeof(Modelo))]
-    [Migration("20171022173636_migration-1")]
-    partial class migration1
+    [Migration("20171022201617_migration-2")]
+    partial class migration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,7 +82,8 @@ namespace Projeto_Barbar.Migrations
             modelBuilder.Entity("Entidade.Consulta", b =>
                 {
                     b.Property<long>("ID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
 
                     b.Property<string>("DESCRICAO")
                         .IsRequired()
@@ -119,10 +120,15 @@ namespace Projeto_Barbar.Migrations
                         .IsRequired()
                         .HasColumnName("NOME");
 
+                    b.Property<long>("Tipo_ParametroID")
+                        .HasColumnName("Tipo_ParametroID");
+
                     b.Property<long>("VersaoID")
                         .HasColumnName("VersaoID");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Tipo_ParametroID");
 
                     b.HasIndex("VersaoID");
 
@@ -174,16 +180,15 @@ namespace Projeto_Barbar.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("ID");
 
+                    b.Property<string>("NM_LABEL")
+                        .IsRequired()
+                        .HasColumnName("NM_LABEL");
+
                     b.Property<string>("NOME")
                         .IsRequired()
                         .HasColumnName("NOME");
 
-                    b.Property<long>("PARAMETRO_CONSULTAID")
-                        .HasColumnName("PARAMETRO_CONSULTAID");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("PARAMETRO_CONSULTAID");
 
                     b.ToTable("Tipo_Parametros");
                 });
@@ -228,6 +233,10 @@ namespace Projeto_Barbar.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("DT_CRIACAO");
 
+                    b.Property<string>("IC_ATIVO")
+                        .IsRequired()
+                        .HasColumnName("IC_ATIVO");
+
                     b.Property<short>("NU_VERSAO")
                         .HasColumnName("NU_VERSAO");
 
@@ -271,6 +280,11 @@ namespace Projeto_Barbar.Migrations
 
             modelBuilder.Entity("Entidade.PARAMETRO_CONSULTA", b =>
                 {
+                    b.HasOne("Entidade.Tipo_Parametro", "Tipo_Parametro")
+                        .WithMany("PARAMETRO_CONSULTAs")
+                        .HasForeignKey("Tipo_ParametroID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Entidade.Versao", "Versao")
                         .WithMany("PARAMETRO_CONSULTAs")
                         .HasForeignKey("VersaoID")
@@ -282,14 +296,6 @@ namespace Projeto_Barbar.Migrations
                     b.HasOne("Entidade.Versao", "Versao")
                         .WithMany("SQL_LINHAs")
                         .HasForeignKey("VersaoID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Entidade.Tipo_Parametro", b =>
-                {
-                    b.HasOne("Entidade.PARAMETRO_CONSULTA", "PARAMETRO_CONSULTA")
-                        .WithMany("Tipo_Parametros")
-                        .HasForeignKey("PARAMETRO_CONSULTAID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

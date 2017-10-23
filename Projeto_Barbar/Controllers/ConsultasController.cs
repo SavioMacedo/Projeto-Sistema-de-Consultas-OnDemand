@@ -60,5 +60,14 @@ namespace Projeto_Barbar.Controllers
             return View(cadastro);
         }
 
+        [HttpGet]
+        public string Executar(long Id)
+        {
+            using (ConsultaLogics logica = new ConsultaLogics(_unitOfWork))
+            {
+                return logica.Executar(Id);
+            }
+        }
+
     }
 }

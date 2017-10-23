@@ -7,29 +7,42 @@
             <div class="panel-heading">
                 Parametrização
             </div>
-            <form asp-controller="Consultas" asp-action="Executar" method="post">
             <div class="panel-body">
-                @if(Model.Versaos.First().PARAMETRO_CONSULTAs == null)
+                @if(Model.Versaos.First().PARAMETRO_CONSULTAs.Count == 0)
                 {
                     <p>Esta consulta não necessita de preenchimentos adicionais. Apenas clique no botão <strong>Executar</strong></p>
                 }
                 else
                 {
-                    foreach (PARAMETRO_CONSULTA parametro in Model.Versaos.Where(x => x.IC_ATIVO == "Sim").Select(x => x.PARAMETRO_CONSULTAs).ToList())
+                    foreach (PARAMETRO_CONSULTA parametro in Model.Versaos.Where(x => x.IC_ATIVO == "Sim").Select(x => x.PARAMETRO_CONSULTAs))
                     {
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label asp-for="@parametro.NOME" class="control-label"></label>
-                                <input name="@parametro.DESCRICAO" class="form-control" type="@parametro.Tipo_Parametro.NM_LABEL" required/>
+                                <input name="@parametro.DESCRICAO" data-id="@parametro.ID" class="form-control" type="@parametro.Tipo_Parametro.NM_LABEL" required/>
                             </div>
                         </div>
                     }
                 }
             </div>
             <div class="panel-footer">
-                <button type="submit" class="btn btn-success">Executar</button>
+                <button type="submit" onclick="Executar(@Model.ID)" class="btn btn-success">Executar</button>
             </div>
-            </form>
         </div>
     </div>
 </div>
+<script>
+    function Executar(id)
+    {
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("Executar","Consultas", new { Id = "id" })".replace("id", id),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (success)
+            {
+                window.location.href = success;
+            }
+        });
+    }
+</script>

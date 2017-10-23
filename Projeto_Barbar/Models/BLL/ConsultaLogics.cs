@@ -1,9 +1,14 @@
 ﻿using Entidade;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.SafeHandles;
+using Newtonsoft.Json;
+using OfficeOpenXml;
 using Projeto_Barbar.Models.ViewModels.Consultas;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -21,7 +26,87 @@ namespace Projeto_Barbar.Models.BLL
 
         public Consulta ListarConsulta (long Id)
         {
-            return _unitOfWork.GetRepository<Consulta>().Find(Id);
+            return _unitOfWork.GetRepository<Consulta>().GetFirstOrDefault(predicate: x => x.ID == Id, include: source => source.Include(versao => versao.Versaos).ThenInclude(parametros => parametros.PARAMETRO_CONSULTAs));
+        }
+
+        public String Executar(long Id)
+        {
+            long versaoID = _unitOfWork.GetRepository<Versao>().GetFirstOrDefault(predicate: filtro => filtro.ConsultaID == Id && filtro.IC_ATIVO == "Sim").ID;
+
+            List<PARAMETRO_CONSULTA> parametros = new List<PARAMETRO_CONSULTA>(_unitOfWork.GetRepository<PARAMETRO_CONSULTA>().GetPagedList(predicate: versao => versao.VersaoID == versaoID).Items);
+
+            string SQL = string.Join(" ", new List<string>(_unitOfWork.GetRepository<SQL_LINHA>().GetPagedList(predicate: versao => versao.VersaoID == versaoID,orderBy: order => order.OrderBy(ordena => ordena.NU_LINHA),selector: selecao => selecao.SQL).Items));
+
+            string conexaoString = "Server=localhost\\SQLEXPRESS;Database=AdventureWorks2014;Trusted_Connection=True;";
+
+            string sFileName = @"Temp\demo.xlsx";
+
+            using (SqlConnection conexao = new SqlConnection(conexaoString))
+            {
+                using (SqlCommand comando = new SqlCommand
+                {
+                    CommandText = SQL,
+                    CommandType = System.Data.CommandType.Text,
+                    Connection = conexao
+                })
+                {
+                    //foreach(PARAMETRO_CONSULTA parametro in parametros)
+                    //{
+                    //    switch(parametro.Tipo_Parametro.NM_LABEL)
+                    //    {
+                    //        case "number":
+                    //            comando.Parameters.Add("@" + parametro.DESCRICAO, System.Data.SqlDbType.BigInt).Value = parametro.
+                    //    }
+                    //    comando.Parameters.Add("@"+parametro.DESCRICAO,System.Data.SqlDbType.BigInt).Value = 
+                    //}
+                    conexao.Open();
+
+                    List<Dictionary<string, object>> dicionario = new List<Dictionary<string, object>>();
+                    
+                    FileInfo file = new FileInfo(sFileName);
+                    if (file.Exists)
+                    {
+                        file.Delete();
+                        file = new FileInfo(sFileName);
+                    }
+
+                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.HasRows)
+                        {
+                            using (ExcelPackage package = new ExcelPackage(file))
+                            {
+                                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Planilha1");
+                                
+                                int linha = 2;
+                                Boolean PrimeiraVez = true;
+                                while(resultado.Read())
+                                {
+                                    if (PrimeiraVez)
+                                    {
+                                        for (int i = 0; i < resultado.FieldCount; i++)
+                                        {
+                                            worksheet.Cells[1, i+1].Value = resultado.GetName(i);
+                                            worksheet.Cells[1, i+1].Style.Font.Bold = true;
+                                        }
+                                        PrimeiraVez = false;
+                                    }
+                                    for (int i = 0; i<resultado.FieldCount;i++)
+                                    {
+                                        worksheet.Cells[linha, i+1].Value = resultado.GetValue(i);
+                                    }
+                                    linha++;
+                                }
+
+                                package.Save();
+                            }
+                        }
+                    }
+                }
+                conexao.Close();
+            }
+
+         return sFileName;
         }
 
         public async Task InserirAsync(Cadastro cadastro)
@@ -42,7 +127,8 @@ namespace Projeto_Barbar.Models.BLL
                 ConsultaID = consulta.ID,
                 DESCRICAO = cadastro.Versao_descricao,
                 NU_VERSAO = 1,
-                DT_CRIACAO = cadastro.Versao_dt_criacao
+                DT_CRIACAO = cadastro.Versao_dt_criacao,
+                IC_ATIVO = "Sim"
             };
 
             _unitOfWork.GetRepository<Versao>().Insert(versao);

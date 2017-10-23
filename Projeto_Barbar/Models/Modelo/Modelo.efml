@@ -95,6 +95,9 @@
     <property name="VersaoID" type="Int64" p1:ValidateRequired="true" p1:Guid="15cbd4d2-ee81-459b-a9bd-5ebf8c09bcdc">
       <column name="" not-null="False" />
     </property>
+    <property name="Tipo_ParametroID" type="Int64" p1:ValidateRequired="true" p1:Guid="555f8e35-ebd8-4920-835e-6968c931aa1d">
+      <column name="" not-null="False" />
+    </property>
   </class>
   <class name="Entidade.Tipo_Parametro" entity-set="Tipo_Parametros" p1:Guid="b203690c-48c9-487e-85eb-fbe6adaab545">
     <id name="ID" type="Int64" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="034f31f1-3b9c-4edf-9290-3a01252afab3">
@@ -197,12 +200,12 @@
         <property name="ConsultaID" />
       </end2>
     </association>
-    <association name="PARAMETRO_CONSULTA_Tipo_Parametro" cardinality="OneToOne" p1:Guid="daf089b1-68d1-4b6e-afff-289b99864dd3">
-      <end1 multiplicity="One" name="PARAMETRO_CONSULTA" class="Tipo_Parametro" relation-class="PARAMETRO_CONSULTA" constrained="True" p1:Guid="0616ab7a-bf77-4370-bb8e-6f3fc513e94c">
-        <property name="VersaoID" />
-      </end1>
-      <end2 multiplicity="One" name="Tipo_Parametro" class="PARAMETRO_CONSULTA" relation-class="Tipo_Parametro" constrained="False" p1:Guid="17123bb0-337e-4da6-b298-f7a74ead7c39">
+    <association name="Tipo_Parametro_PARAMETRO_CONSULTA" cardinality="OneToMany" p1:Guid="d882b7ec-f5cd-4da8-9d29-174fd0c78c79">
+      <end1 multiplicity="One" name="Tipo_Parametro" class="PARAMETRO_CONSULTA" relation-class="Tipo_Parametro" constrained="True" p1:Guid="a5fdb2cd-9cbb-4f63-b02c-ac3340282aa4">
         <property name="ID" />
+      </end1>
+      <end2 multiplicity="Many" name="PARAMETRO_CONSULTAs" class="Tipo_Parametro" relation-class="PARAMETRO_CONSULTA" p1:Guid="c6cd8eb8-ef26-4421-a98c-d9fd4fe5d1d2">
+        <property name="Tipo_ParametroID" />
       </end2>
     </association>
   </associations>

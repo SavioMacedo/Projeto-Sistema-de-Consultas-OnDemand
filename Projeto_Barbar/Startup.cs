@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Projeto_Barbar
 {
@@ -22,6 +23,8 @@ namespace Projeto_Barbar
 
             services.AddDbContext<Persistencia.Modelo>(configurar => configurar.UseSqlite("Data Source=database.db"));
             services.AddUnitOfWork<Persistencia.Modelo>();
+
+            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Persistencia.Modelo>().AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +39,8 @@ namespace Projeto_Barbar
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            //app.UseAuthentication();
 
             app.UseStaticFiles();
 

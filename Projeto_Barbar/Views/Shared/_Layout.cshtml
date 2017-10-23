@@ -51,6 +51,15 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>User @User.Identity.Name is signed in. <a href="/Account/Logout">Logout</a> </li>
+
+                        }
+                        else
+                        {
+                            <li>No user is signed in.</li>
+                        }
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="Consultas" asp-action="Cadastrar">Cadastrar Consulta</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>

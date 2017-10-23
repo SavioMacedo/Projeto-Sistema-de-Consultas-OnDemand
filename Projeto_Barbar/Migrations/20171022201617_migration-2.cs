@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Projeto_Barbar.Migrations
 {
-    public partial class migration1 : Migration
+    public partial class migration2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,6 +38,20 @@ namespace Projeto_Barbar.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tipo_Parametros",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NM_LABEL = table.Column<string>(type: "TEXT", nullable: false),
+                    NOME = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tipo_Parametros", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -61,6 +75,7 @@ namespace Projeto_Barbar.Migrations
                     ConsultaID = table.Column<long>(type: "INTEGER", nullable: false),
                     DESCRICAO = table.Column<string>(type: "TEXT", nullable: false),
                     DT_CRIACAO = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IC_ATIVO = table.Column<string>(type: "TEXT", nullable: false),
                     NU_VERSAO = table.Column<short>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -144,11 +159,18 @@ namespace Projeto_Barbar.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     DESCRICAO = table.Column<string>(type: "TEXT", nullable: false),
                     NOME = table.Column<string>(type: "TEXT", nullable: false),
+                    Tipo_ParametroID = table.Column<long>(type: "INTEGER", nullable: false),
                     VersaoID = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PARAMETRO_CONSULTAs", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_PARAMETRO_CONSULTAs_Tipo_Parametros_Tipo_ParametroID",
+                        column: x => x.Tipo_ParametroID,
+                        principalTable: "Tipo_Parametros",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PARAMETRO_CONSULTAs_Versaos_VersaoID",
                         column: x => x.VersaoID,
@@ -174,26 +196,6 @@ namespace Projeto_Barbar.Migrations
                         name: "FK_SQL_LINHAs_Versaos_VersaoID",
                         column: x => x.VersaoID,
                         principalTable: "Versaos",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tipo_Parametros",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    NOME = table.Column<string>(type: "TEXT", nullable: false),
-                    PARAMETRO_CONSULTAID = table.Column<long>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tipo_Parametros", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Tipo_Parametros_PARAMETRO_CONSULTAs_PARAMETRO_CONSULTAID",
-                        column: x => x.PARAMETRO_CONSULTAID,
-                        principalTable: "PARAMETRO_CONSULTAs",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -224,6 +226,11 @@ namespace Projeto_Barbar.Migrations
                 column: "UsuarioID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PARAMETRO_CONSULTAs_Tipo_ParametroID",
+                table: "PARAMETRO_CONSULTAs",
+                column: "Tipo_ParametroID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PARAMETRO_CONSULTAs_VersaoID",
                 table: "PARAMETRO_CONSULTAs",
                 column: "VersaoID");
@@ -232,11 +239,6 @@ namespace Projeto_Barbar.Migrations
                 name: "IX_SQL_LINHAs_VersaoID",
                 table: "SQL_LINHAs",
                 column: "VersaoID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tipo_Parametros_PARAMETRO_CONSULTAID",
-                table: "Tipo_Parametros",
-                column: "PARAMETRO_CONSULTAID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Versaos_ConsultaID",
@@ -253,10 +255,10 @@ namespace Projeto_Barbar.Migrations
                 name: "Atualizas");
 
             migrationBuilder.DropTable(
-                name: "SQL_LINHAs");
+                name: "PARAMETRO_CONSULTAs");
 
             migrationBuilder.DropTable(
-                name: "Tipo_Parametros");
+                name: "SQL_LINHAs");
 
             migrationBuilder.DropTable(
                 name: "Tipo_Associacaos");
@@ -265,7 +267,7 @@ namespace Projeto_Barbar.Migrations
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "PARAMETRO_CONSULTAs");
+                name: "Tipo_Parametros");
 
             migrationBuilder.DropTable(
                 name: "Versaos");
