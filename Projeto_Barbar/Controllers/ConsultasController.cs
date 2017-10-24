@@ -61,11 +61,14 @@ namespace Projeto_Barbar.Controllers
         }
 
         [HttpGet]
-        public string Executar(long Id)
+        public FileResult Executar(long Id)
         {
             using (ConsultaLogics logica = new ConsultaLogics(_unitOfWork))
             {
-                return logica.Executar(Id);
+                string filepath = $"{logica.Executar(Id)}";
+                string fileName = "Resultado.xlsx";
+                byte[] fileBytes = System.IO.File.ReadAllBytes(filepath);
+                return File(fileBytes, "application/x-msdownload", fileName);
             }
         }
 
