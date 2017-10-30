@@ -13496,11 +13496,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\savio\\Documents\\Visual Studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\Projeto_Barbar.csproj",
+      "projectUniqueName": "C:\\Users\\savio\\documents\\visual studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\Projeto_Barbar.csproj",
       "projectName": "Projeto_Barbar",
-      "projectPath": "C:\\Users\\savio\\Documents\\Visual Studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\Projeto_Barbar.csproj",
+      "projectPath": "C:\\Users\\savio\\documents\\visual studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\Projeto_Barbar.csproj",
       "packagesPath": "C:\\Users\\savio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\savio\\Documents\\Visual Studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\obj\\",
+      "outputPath": "C:\\Users\\savio\\documents\\visual studio 2017\\Projects\\Projeto_Barbar\\Projeto_Barbar\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

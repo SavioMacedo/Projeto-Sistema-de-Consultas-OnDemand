@@ -7,7 +7,7 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-controller="Consultas" asp-action="CadastrarAsync" method="post" >
+        <form asp-controller="Consultas" asp-action="CadastrarAsync" method="post">
             <div class="col-md-9">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -46,7 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr id='addr1'></tr>
+                                <tr id='addr-1'></tr>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -69,7 +69,7 @@
 </div>
 <script>
     var parametros = [];
-    var quantidadeLinhas = $("#tab_logic tr").length;
+    var quantidadeLinhas = $("#tab_logic tbody tr").length;
 
     function AtualizarQuadro() {
         var regex = /@@(\w+)/g;
@@ -95,7 +95,7 @@
 
         for (var i = 0; i < quantidadeLinhas; i++)
         {
-            grid_ram.push({ Nome: $("#nome-" + i).val(), Apelido: $("#apelido-" + i).val(), Tipo: $('select[name=TipoSeletor]').val() });
+            grid_ram.push({ Nome: $("#nome-" + i).val(), Apelido: $("#Apelido-" + i).val(), Tipo: $('select[name=TipoSeletor]').val() });
         }
 
         for (var indice = 0; indice < quantidadeLinhas; indice++)
@@ -103,16 +103,19 @@
             if (!!grid_ram[0]) {
                 var j = 0;
                 var flag = 0;
-                while (flag == 0 && j < quantidadeLinhas) {
-                    if (parametros[item].Nome == grid_ram[j].Nome) {
+                while (flag == 0 && j < quantidadeLinhas)
+                {
+                    if (parametros[item].Nome == grid_ram[j].Nome)
+                    {
                         flag = 1;
                     }
 
                     j++;
                 }
 
-                if (flag == 0) {
-                    $('#addr-' + quantidadeLinhas).html("<td align='center'>< button class='btn btn-sm btn-danger' >Deletar</button ></td ><td id='nome-" + parametros + "'>" + parametros[item].Nome + "</td><td><input type='text' id='Apelido-" + quantidadeLinhas + "' placeholder='Apelido' class='form-control input-md' /></td><td><select name='TipoSeletor' asp-items='@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))' class='form-control'><option>Selecione ...</option></select></td>");
+                if (flag == 0)
+                {
+                    $('#addr-' + quantidadeLinhas).html("<td align='center'><button class='btn btn-sm btn-danger'>Deletar</button></td><td id='nome-" + parametros + "'>" + parametros[item].Nome + "</td><td><input type='text' id='Apelido-" + quantidadeLinhas + "' placeholder='Apelido' class='form-control input-md' /></td><td><select name='TipoSeletor' asp-items='@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))' class='form-control'><option>Selecione ...</option></select></td>");
                     quantidadeLinhas++;
                     $('#tab_logic').append('<tr id="addr-' + quantidadeLinhas + '"></tr>');
                 }
@@ -120,7 +123,7 @@
             }
             else
             {
-                $('#addr-' + quantidadeLinhas).html("<td align='center'>< button class='btn btn-sm btn-danger' >Deletar</button ></td ><td id='nome-" + parametros + "'>" + parametros[item].Nome + "</td><td><input type='text' id='Apelido-" + quantidadeLinhas + "' placeholder='Apelido' class='form-control input-md' /></td><td><select name='TipoSeletor' asp-items='@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))' class='form-control'><option>Selecione ...</option></select></td>");
+                $('#addr-' + quantidadeLinhas).html("<td align='center'><button class='btn btn-sm btn-danger'>Deletar</button></td><td id='nome-" + parametros + "'>" + parametros[item].Nome + "</td><td><input type='text' id='Apelido-" + quantidadeLinhas + "' placeholder='Apelido' class='form-control input-md' /></td><td><select name='TipoSeletor' asp-items='@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))' class='form-control'><option>Selecione ...</option></select></td>");
                 quantidadeLinhas++;
                 $('#tab_logic').append('<tr id="addr-' + quantidadeLinhas + '"></tr>');
             }
@@ -179,7 +182,7 @@
         }
     }
 </script>
-@section Scripts 
-{
+@section Scripts
+    {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
