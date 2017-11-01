@@ -45,9 +45,7 @@
                                     <th class="text-center">Tipo</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr id='addr1'></tr>
-                            </tbody>
+                            
                             <tfoot>
                                 <tr>
                                     <td><button onclick="AtualizarQuadro()" class="btn btn-sm btn-primary">Atualizar Quadro</button></td>
@@ -69,115 +67,114 @@
 </div>
 <script>
     var parametros = [];
-    var quantidadeLinhas = $("#tab_logic tr").length;
+    var total = 0;
+    //var quantidadeLinhas = $("#tab_logic tr").length;
+
+    //parametrosRAM.push(bancoDeDados.Parametros);
 
     function AtualizarQuadro() {
         var regex = /@@(\w+)/g;
         var palavras = $("#SQL").val();
-        var matches = [];
         var array;
-        parametros.pop();
-        parametros = [];
-
+        var j;
+        var i = total;
         while ((array = regex.exec(palavras)) !== null) {
-            matches.push(array[1]);
-        }
-
-        matches.forEach(AdicionarNaLista);
-
-        AtualizarSQLGrid();
-    }
-
-    function AdicionarNaLista(texto, item, array)
-    {
-        parametros[item] = { Nome: texto, Descricao: "" };
-        grid_ram = [];
-
-        for (var i = 0; i < quantidadeLinhas; i++)
-        {
-            grid_ram.push({ Nome: $("#nome-" + i).val(), Apelido: $("#apelido-" + i).val(), Tipo: $('select[name=TipoSeletor]').val() });
-        }
-
-        for (var indice = 0; indice < quantidadeLinhas; indice++)
-        {
-            if (!!grid_ram[0]) {
-                var j = 0;
-                var flag = 0;
-                while (flag == 0 && j < quantidadeLinhas) {
-                    if (parametros[item].Nome == grid_ram[j].Nome) {
-                        flag = 1;
+            //if (parametros.length == 0) {
+                parametros[i] = { Nome: array[1] };
+                i++;
+            /*}
+            else {
+                for (j = 0; j < parametros.length; j++) {
+                    if (parametros[j] == array[1]) {
+                        break;
                     }
-
-                    j++;
+                    if (j == parametros.length - 1) {
+                        parametros[i] = { Nome: array[1] };
+                        i++;
+                    }
                 }
-
-                if (flag == 0) {
-                    $('#addr-' + quantidadeLinhas).html("<td align='center'>< button class='btn btn-sm btn-danger' >Deletar</button ></td ><td id='nome-" + parametros + "'>" + parametros[item].Nome + "</td><td><input type='text' id='Apelido-" + quantidadeLinhas + "' placeholder='Apelido' class='form-control input-md' /></td><td><select name='TipoSeletor' asp-items='@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))' class='form-control'><option>Selecione ...</option></select></td>");
-                    quantidadeLinhas++;
-                    $('#tab_logic').append('<tr id="addr-' + quantidadeLinhas + '"></tr>');
-                }
-
-            }
-            else
-            {
-                $('#addr-' + quantidadeLinhas).html("<td align='center'>< button class='btn btn-sm btn-danger' >Deletar</button ></td ><td id='nome-" + parametros + "'>" + parametros[item].Nome + "</td><td><input type='text' id='Apelido-" + quantidadeLinhas + "' placeholder='Apelido' class='form-control input-md' /></td><td><select name='TipoSeletor' asp-items='@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))' class='form-control'><option>Selecione ...</option></select></td>");
-                quantidadeLinhas++;
-                $('#tab_logic').append('<tr id="addr-' + quantidadeLinhas + '"></tr>');
-            }
-
+            }*/
+            
         }
+        refazerTudo();
+    }
+    function refazerTudo(){
+        deletarTudo();
+        var tab = document.createElement("tbody");
+        tab.id = "tab";
+        var i;
+        for (i = 0; i < parametros.length; i++) {
+            if (parametros[i]) {
+                var tabela = document.getElementById("tab_logic");
+                var tr = document.createElement("tr");
+                var tdPos = document.createElement("td");
+                var tdNome = document.createElement("td");
+                var tdApelido = document.createElement("td");
+                var tdTipo = document.createElement("td");
+                var buttonDelete = document.createElement("button");
 
-        if (quantidadeLinhas == 1)
-        {
-            $('#addr-' + quantidadeLinhas).html("<td align='center'>< button class='btn btn-sm btn-danger' >Deletar</button ></td ><td id='nome-" + parametros + "'>" + parametros[item].Nome + "</td><td><input type='text' id='Apelido-" + quantidadeLinhas + "' placeholder='Apelido' class='form-control input-md' /></td><td><select name='TipoSeletor' asp-items='@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))' class='form-control'><option>Selecione ...</option></select></td>");
-            quantidadeLinhas++;
-            $('#tab_logic').append('<tr id="addr-' + quantidadeLinhas + '"></tr>');
+                var inputApelido = document.createElement("input");
+                var selectTipo = document.createElement("select");
+                var optionSelect = document.createElement("option");
+
+                optionSelect.appendChild(document.createTextNode("Selecione..."));
+
+                buttonDelete.className = "btn btn-sm btn-danger";
+                buttonDelete.setAttribute("onclick", "Deletar(" + i + ")");
+                buttonDelete.innerHTML = "Deletar";
+
+                selectTipo.name = "TipoSeletor";
+                selectTipo.className = "form-control";
+                selectTipo.setAttribute("asp-items", "@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))");
+
+                inputApelido.type = "text";
+                inputApelido.placeholder = "Apelido";
+                inputApelido.className = "form-control input-md";
+
+                tdPos.appendChild(buttonDelete);
+                tdPos.align = "center";
+                tdNome.innerHTML = parametros[i].Nome;
+                tr.id = "addr-" + i;
+
+                selectTipo.appendChild(optionSelect);
+                tdTipo.appendChild(selectTipo);
+                tdApelido.appendChild(inputApelido);
+                tr.appendChild(tdPos);
+                tr.appendChild(tdNome);
+                tr.appendChild(tdApelido);
+                tr.appendChild(tdTipo);
+                tab.appendChild(tr);
+                tabela.appendChild(tab);
+
+                total++;
+            }
         }
     }
-
-    function AtualizarSQLGrid()
-    {
-        var grid_ram = [];
-
-        for (var i = 0; i < quantidadeLinhas; i++)
-        {
-            grid_ram.push({ Nome: $("#nome-" + i).val(), Apelido: $("#apelido-" + i).val(), Tipo: $('select[name=TipoSeletor]').val() });
+    function deletarTudo() {
+        var tab = document.getElementById("tab");
+        if (tab) {
+            tab.remove();
         }
-
-        for (var indice = 0; indice < quantidadeLinhas; indice++)
-        {
-            if (!!grid_ram[0])
-            {
-                var flag = 0;
-                var j = 0;
-
-                while (flag == 0 && parametros.length)
-                {
-                    if (grid_ram[indice].Nome == parametros[j].Nome)
-                        flag = 1;
-                    j++;
-
-                }
-
-                if (flag == 0)
-                {
-                    $('#addr-' + quantidadeLinhas).remove();
-                    quantidadeLinhas--;
-                    $('#tab_logic').append('<tr id="addr-' + quantidadeLinhas + '"></tr>');
-
-                }
-
-            }
-            else
-            {
-                $('#addr-' + quantidadeLinhas).remove();
-                quantidadeLinhas--;
-                $('#tab_logic').append('<tr id="addr-' + quantidadeLinhas + '"></tr>');
-
-            }
-
-        }
+        total = 0;
     }
+    function Deletar(id) {
+        parametros.splice(id, 1);
+        total--;
+        document.getElementById("addr-" + id).remove();
+        refazerTudo();
+    }
+    /*function validaParametro(param) {
+        var i;
+        for (i = 0; i < parametros.length; i++){
+            if (parametros[i]) {
+                if (parametros[i].Nome == param.Nome) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }*/
+
 </script>
 @section Scripts 
 {
