@@ -79,13 +79,13 @@
         var j;
         var i = total;
         while ((array = regex.exec(palavras)) !== null) {
-            //if (parametros.length == 0) {
+            if (parametros.length == 0) {
                 parametros[i] = { Nome: array[1] };
                 i++;
-            /*}
+            }
             else {
                 for (j = 0; j < parametros.length; j++) {
-                    if (parametros[j] == array[1]) {
+                    if (parametros[j].Nome == array[1]) {
                         break;
                     }
                     if (j == parametros.length - 1) {
@@ -93,7 +93,7 @@
                         i++;
                     }
                 }
-            }*/
+            }
             
         }
         refazerTudo();
