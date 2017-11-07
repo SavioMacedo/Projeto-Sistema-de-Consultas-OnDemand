@@ -26,14 +26,14 @@ namespace Projeto_Barbar.Models.BLL
 
         public Consulta ListarConsulta (long Id)
         {
-            return _unitOfWork.GetRepository<Consulta>().GetFirstOrDefault(predicate: x => x.ID == Id, include: source => source.Include(versao => versao.Versaos).ThenInclude(parametros => parametros.PARAMETRO_CONSULTAs));
+            return _unitOfWork.GetRepository<Consulta>().GetFirstOrDefault(predicate: x => x.ID == Id, include: source => source.Include(versao => versao.Versaos).ThenInclude(parametros => parametros.PARAMETRO_CONSULTAs).ThenInclude(tipo => tipo.Tipo_Parametro));
         }
 
-        public String Executar(long Id)
+        public String Executar(long Id, Dictionary<string, string> parametro_view )
         {
             long versaoID = _unitOfWork.GetRepository<Versao>().GetFirstOrDefault(predicate: filtro => filtro.ConsultaID == Id && filtro.IC_ATIVO == "Sim").ID;
 
-            List<PARAMETRO_CONSULTA> parametros = new List<PARAMETRO_CONSULTA>(_unitOfWork.GetRepository<PARAMETRO_CONSULTA>().GetPagedList(predicate: versao => versao.VersaoID == versaoID).Items);
+            List<PARAMETRO_CONSULTA> parametros = new List<PARAMETRO_CONSULTA>(_unitOfWork.GetRepository<PARAMETRO_CONSULTA>().GetPagedList(predicate: versao => versao.VersaoID == versaoID, include: include => include.Include(tipo => tipo.Tipo_Parametro)).Items);
 
             string SQL = string.Join(" ", new List<string>(_unitOfWork.GetRepository<SQL_LINHA>().GetPagedList(predicate: versao => versao.VersaoID == versaoID,orderBy: order => order.OrderBy(ordena => ordena.NU_LINHA),selector: selecao => selecao.SQL).Items));
 
@@ -50,15 +50,25 @@ namespace Projeto_Barbar.Models.BLL
                     Connection = conexao
                 })
                 {
-                    //foreach(PARAMETRO_CONSULTA parametro in parametros)
-                    //{
-                    //    switch(parametro.Tipo_Parametro.NM_LABEL)
-                    //    {
-                    //        case "number":
-                    //            comando.Parameters.Add("@" + parametro.DESCRICAO, System.Data.SqlDbType.BigInt).Value = parametro.
-                    //    }
-                    //    comando.Parameters.Add("@"+parametro.DESCRICAO,System.Data.SqlDbType.BigInt).Value = 
-                    //}
+                    foreach (PARAMETRO_CONSULTA parametro in parametros)
+                    {
+                        switch (parametro.Tipo_Parametro.NM_LABEL)
+                        {
+                            case "number":
+                                comando.Parameters.Add("@" + parametro.NOME, System.Data.SqlDbType.BigInt).Value = long.Parse(parametro_view.Where(o => o.Key == parametro.NOME).First().Value);
+                                break;
+                            case "date":
+                                comando.Parameters.Add("@" + parametro.NOME, System.Data.SqlDbType.Date).Value = DateTime.Parse(parametro_view.Where(o => o.Key == parametro.NOME).First().Value).Date;
+                                break;
+                            case "datetime-local":
+                                comando.Parameters.Add("@" + parametro.NOME, System.Data.SqlDbType.DateTime).Value = DateTime.Parse(parametro_view.Where(o => o.Key == parametro.NOME).First().Value);
+                                break;
+                            case "text":
+                                comando.Parameters.Add("@" + parametro.NOME, System.Data.SqlDbType.VarChar).Value = parametro_view.Where(o => o.Key == parametro.NOME).First().Value;
+                                break;
+                        }
+                    }
+
                     conexao.Open();
 
                     List<Dictionary<string, object>> dicionario = new List<Dictionary<string, object>>();
@@ -101,6 +111,18 @@ namespace Projeto_Barbar.Models.BLL
                                 package.Save();
                             }
                         }
+                        else
+                        {
+                            using (ExcelPackage package = new ExcelPackage(file))
+                            {
+                                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Planilha1");
+                                
+                                worksheet.Cells[1, 1].Value = "Esta consulta não retornou resultados.";
+                                worksheet.Cells[1, 1].Style.Font.Bold = true;
+
+                                package.Save();
+                            }
+                        }
                     }
                 }
                 conexao.Close();
@@ -134,6 +156,19 @@ namespace Projeto_Barbar.Models.BLL
             _unitOfWork.GetRepository<Versao>().Insert(versao);
             await _unitOfWork.SaveChangesAsync();
 
+            foreach(PARAMETRO_CONSULTA param in cadastro.Parametros)
+            {
+                _unitOfWork.GetRepository<PARAMETRO_CONSULTA>().Insert(new PARAMETRO_CONSULTA
+                {
+                    DESCRICAO = param.DESCRICAO,
+                    NOME = param.NOME,
+                    VersaoID = versao.ID,
+                    Tipo_ParametroID = param.Tipo_ParametroID
+                });
+
+                await _unitOfWork.SaveChangesAsync();
+            }
+            
             List<string> SQL_Splitado = cadastro.SQL.Split("/n").ToList();
 
             int linha = 1;

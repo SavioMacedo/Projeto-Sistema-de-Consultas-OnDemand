@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto_Barbar.Models.BLL;
 using Projeto_Barbar.Models.ViewModels.Consultas;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Projeto_Barbar.Controllers
@@ -22,13 +23,16 @@ namespace Projeto_Barbar.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Cadastrar()
+        public IActionResult TipoParametros()
         {
             using (Tipo_ParametrosLogics parametros = new Tipo_ParametrosLogics(_unitOfWork))
             {
-                ViewBag.TipoParametros = parametros.PuxarTodos();
+                return Json(parametros.PuxarTodos());
             }
+        }
 
+        public IActionResult Cadastrar()
+        {
             return View();
         }
 
@@ -44,9 +48,9 @@ namespace Projeto_Barbar.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CadastrarAsync(Cadastro cadastro)
+        public async Task<IActionResult> CadastrarAsync([FromBody] Cadastro cadastro)
         {
-           if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 using (ConsultaLogics consulta_logica = new ConsultaLogics(_unitOfWork))
                 {
@@ -55,22 +59,37 @@ namespace Projeto_Barbar.Controllers
                 return RedirectToAction("Index");
             }
 
-
-
             return View(cadastro);
         }
 
         [HttpGet]
-        public FileResult Executar(long Id)
+        public FileResult Executar(long Id, Dictionary<string,string> parametros)
         {
             using (ConsultaLogics logica = new ConsultaLogics(_unitOfWork))
             {
-                string filepath = $"{logica.Executar(Id)}";
+                string filepath = $"{logica.Executar(Id,parametros)}";
                 string fileName = "Resultado.xlsx";
                 byte[] fileBytes = System.IO.File.ReadAllBytes(filepath);
                 return File(fileBytes, "application/x-msdownload", fileName);
             }
         }
 
+        public FileResult Download()
+        {
+            string filepath = @"Temp\demo.xlsx";
+            string fileName = "Resultado.xlsx";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filepath);
+            return File(fileBytes, "application/x-msdownload", fileName);
+        }
+
+        public IActionResult Editar(long Id)
+        {
+            Consulta consulta;
+            using (ConsultaLogics logica = new ConsultaLogics(_unitOfWork))
+            {
+                consulta = logica.ListarConsulta(Id);
+                return View(consulta);
+            }
+        }
     }
 }

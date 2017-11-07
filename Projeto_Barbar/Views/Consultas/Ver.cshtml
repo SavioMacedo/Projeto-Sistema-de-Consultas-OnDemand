@@ -1,33 +1,85 @@
 ﻿@model Entidade.Consulta
 @using Entidade
-
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                Parametrização
-            </div>
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Parametrização</h4>
+                <div class="btn-group pull-right">
+                    <a asp-controller="Consultas" asp-action="Editar" class="btn btn-default btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar</a>
+                </div>
+            </div> 
             <div class="panel-body">
-                @if(Model.Versaos.First().PARAMETRO_CONSULTAs.Count == 0)
+                @if (Model.Versaos.Where(x => x.IC_ATIVO == "Sim").First().PARAMETRO_CONSULTAs.Count == 0)
                 {
                     <p>Esta consulta não necessita de preenchimentos adicionais. Apenas clique no botão <strong>Executar</strong></p>
                 }
                 else
                 {
-                    foreach (PARAMETRO_CONSULTA parametro in Model.Versaos.Where(x => x.IC_ATIVO == "Sim").Select(x => x.PARAMETRO_CONSULTAs))
+                    <div id="formulario">
+                    @{List<Versao> versao = Model.Versaos.Where(x => x.IC_ATIVO == "Sim").ToList();
+                    string tipo;
+                    int contador = 0;
+                    List<PARAMETRO_CONSULTA> parametros = versao.First().PARAMETRO_CONSULTAs.ToList();}
+                    @foreach (PARAMETRO_CONSULTA parametro in parametros)
                     {
+                        tipo = parametro.Tipo_Parametro.NM_LABEL;
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="@parametro.NOME" class="control-label"></label>
-                                <input name="@parametro.DESCRICAO" data-id="@parametro.ID" class="form-control" type="@parametro.Tipo_Parametro.NM_LABEL" required/>
+                                <label for="@parametro.NOME" class="control-label">@parametro.DESCRICAO :</label>
+                                <input name="@parametro.NOME" data-formulario="sim" data-id="@contador" class="form-control" type="@tipo" required/>
                             </div>
                         </div>
+                        contador++;
                     }
+                    </div>
                 }
             </div>
             <div class="panel-footer">
-                <a asp-action="Executar" asp-route-Id="@Model.ID" class="btn btn-success">Executar</a>
+                <a onclick="Executar(@Model.ID)" class="btn btn-success">Executar</a>
             </div>
+            <div id="loader" style="display: none;"></div>
         </div>
     </div>
 </div>
+<script>
+    function Carregado()
+    {
+        document.getElementById("loader").style.display = "none";
+        $(".panel-footer").removeClass("bloqueado");
+        $(".panel-body").removeClass("bloqueado");
+    }
+    function Carregando()
+    {
+        document.getElementById("loader").style.display = "";
+        $(".panel-footer").addClass("bloqueado");
+        $(".panel-body").addClass("bloqueado");
+    }
+    function Executar(id)
+    {
+        var quantidadeParametros = @Model.Versaos.Where(x => x.IC_ATIVO == "Sim").First().PARAMETRO_CONSULTAs.Count;
+        var parametros = new Object;
+
+        for (var i = 0; i < quantidadeParametros; i++)
+        {
+            parametros['[' + i + '].Key'] = $("input[data-id='" + i + "']").attr("name");
+            parametros['[' + i + '].Value'] = $("input[data-id='" + i + "']").val();
+        }
+
+        parametros.id = id;
+
+        Carregando();
+
+        $.ajax({
+            url: "@Url.Action("Executar","Consultas")",
+            type: 'GET',
+            data: parametros,
+            success: function ()
+            {
+                Carregado();
+                window.location = "@Url.Action("Download","Consultas")";
+            }
+        });
+
+    }
+</script>

@@ -42,7 +42,18 @@ function AtualizarQuadro() {
     if (k < parametros.length) {
         parametros.splice(k, parametros.length - 1);
     }
+    for (i = 0; i < parametros.length; i++)
+    {
+        for (j = 0; j < parametros.length; j++)
+        {
+            if (j != i && parametros[i].Nome == parametros[j].Nome)
+            {
+                parametros.splice(j, 1);
+            }
+        }
+    }
     refazerTudo();
+    atualizar();
 }
 function refazerTudo() {
     deletarTudo();
@@ -59,6 +70,7 @@ function refazerTudo() {
             var tdTipo = document.createElement("td");
             var buttonDelete = document.createElement("button");
 
+            var spanNome = document.createElement("span");
             var inputApelido = document.createElement("input");
             var selectTipo = document.createElement("select");
             var optionSelect = document.createElement("option");
@@ -80,7 +92,9 @@ function refazerTudo() {
 
             tdPos.appendChild(buttonDelete);
             tdPos.align = "center";
-            tdNome.innerHTML = parametros[i].Nome;
+            spanNome.innerHTML = parametros[i].Nome;
+            spanNome.id = "idNome-" + i;
+            tdNome.appendChild(spanNome);
             tr.id = "addr-" + i;
 
             selectTipo.appendChild(optionSelect);
@@ -93,6 +107,16 @@ function refazerTudo() {
             tab.appendChild(tr);
             tabela.appendChild(tab);
 
+        }
+    }
+}
+function atualizar()
+{
+    for (var i = 0; i < parametros.length; i++)
+    {
+        for (var j = 0; j < tipoParametros.length; j++)
+        {
+            $("#TipoSeletor" + i).append('<option value="' + tipoParametros[j].id + '">' + tipoParametros[j].nome + '</option>');
         }
     }
 }

@@ -11,13 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Projeto_Barbar")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Projetos 3 - DataView")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyDescriptionAttribute("Package Description")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("Projeto_Barbar")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Projeto_Barbar")]
+[assembly: System.Reflection.AssemblyProductAttribute("Projetos 3 - DataView")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Projetos 3 - DataView")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.

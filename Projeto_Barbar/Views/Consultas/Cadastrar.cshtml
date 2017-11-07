@@ -48,14 +48,14 @@
                             
                             <tfoot>
                                 <tr>
-                                    <td><button onclick="AtualizarQuadro(); atualizar()" class="btn btn-sm btn-primary">Atualizar Quadro</button></td>
+                                    <td><button type="button" onclick="AtualizarQuadro();" class="btn btn-sm btn-primary">Atualizar Quadro</button></td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Cadastrar" class="btn btn-lg btn-success" />
+                    <input type="button" onclick="Cadastrar()" value="Cadastrar" class="btn btn-lg btn-success" />
                 </div>
             </div>
         </form>
@@ -65,15 +65,59 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-<script src="~/js/tabela.js"> </script>
 <script>
-    function atualizar() {
-        var i;
-        for (i = 0; i < parametros.length; i++) {
-            document.getElementById("TipoSeletor"+i).setAttribute("asp-items", "@(new SelectList(@ViewBag.TipoParametros, "ID", "NOME"))");
+    var tipoParametros;
+    $.ajax({
+        url: "@Url.Action("TipoParametros","Consultas")",
+        success: function (data)
+        {
+            tipoParametros = data;
         }
+    });
+
+    function Cadastrar()
+    {
+        var Parametros = [];
+        for (var i = 0; i < parametros.length; i++)
+        {
+            Parametros.push({
+                NOME: $("#idNome-" + i).text(),
+                DESCRICAO: $("#idApelido-" + i).val(),
+                Tipo_ParametroID: $("#TipoSeletor" + i).val()
+            });
+
+        }
+        
+        var cadastro =
+            {
+                "Nome": $("#Nome").val(),
+                "Descricao": $("#Descricao").val(),
+                "SQL": $("#SQL").val(),
+                "Usua_Chave": $("#Usua_Chave").val(),
+                "Parametros": Parametros
+            };
+
+        var data = { cadastro: cadastro }
+
+        $.ajax({
+            data: JSON.stringify(cadastro),
+            type: "POST",
+            url: "@Url.Action("CadastrarAsync", "Consultas")",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (sucesso)
+            {
+                alert("Cadastrado com sucesso.");
+                window.location = "@Url.Action("Index","Home")";
+            },
+            error: function (erro)
+            {
+                alert("Ocorrerão os seguintes erros: \n" + erro);
+            }
+        });
     }
 </script>
+<script src="~/js/tabela.js"> </script>
 @section Scripts 
 {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

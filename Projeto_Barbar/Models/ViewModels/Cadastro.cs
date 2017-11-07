@@ -1,4 +1,6 @@
-﻿﻿using System;
+﻿using Entidade;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Projeto_Barbar.Models.ViewModels.Consultas
@@ -22,6 +24,8 @@ namespace Projeto_Barbar.Models.ViewModels.Consultas
         [Required(ErrorMessage = "O campo Matrícula do Usuário Chave é obrigatório.")]
         [Display(Name = "Matricula do Usuario Chave")]
         public long Usua_Chave { get; set; }
+
+        public List<PARAMETRO_CONSULTA> Parametros { get; set; }
 
         public DateTime DT_CRIACAO { get { return DateTime.Now; } }
         public string IC_ATIVO { get { return "Sim"; } }
