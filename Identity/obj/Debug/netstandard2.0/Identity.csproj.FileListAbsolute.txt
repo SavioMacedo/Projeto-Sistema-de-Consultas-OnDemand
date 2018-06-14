@@ -1,0 +1,8 @@
+C:\Users\savio\Desktop\Projeto\Identity\bin\Debug\netstandard2.0\Identity.deps.json
+C:\Users\savio\Desktop\Projeto\Identity\bin\Debug\netstandard2.0\Identity.dll
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.csproj.CoreCompileInputs.cache
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.AssemblyInfoInputs.cache
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.AssemblyInfo.cs
+C:\Users\savio\Desktop\Projeto\Identity\bin\Debug\netstandard2.0\Identity.pdb
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.dll
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.pdb

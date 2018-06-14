@@ -1,0 +1,12 @@
+C:\Users\savio\Desktop\Projeto\site\bin\Debug\netcoreapp2.0\site.deps.json
+C:\Users\savio\Desktop\Projeto\site\bin\Debug\netcoreapp2.0\site.runtimeconfig.json
+C:\Users\savio\Desktop\Projeto\site\bin\Debug\netcoreapp2.0\site.runtimeconfig.dev.json
+C:\Users\savio\Desktop\Projeto\site\bin\Debug\netcoreapp2.0\site.dll
+C:\Users\savio\Desktop\Projeto\site\bin\Debug\netcoreapp2.0\site.pdb
+C:\Users\savio\Desktop\Projeto\site\obj\Debug\netcoreapp2.0\site.csprojResolveAssemblyReference.cache
+C:\Users\savio\Desktop\Projeto\site\obj\Debug\netcoreapp2.0\site.csproj.CoreCompileInputs.cache
+C:\Users\savio\Desktop\Projeto\site\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\savio\Desktop\Projeto\site\obj\Debug\netcoreapp2.0\site.AssemblyInfoInputs.cache
+C:\Users\savio\Desktop\Projeto\site\obj\Debug\netcoreapp2.0\site.AssemblyInfo.cs
+C:\Users\savio\Desktop\Projeto\site\obj\Debug\netcoreapp2.0\site.dll
+C:\Users\savio\Desktop\Projeto\site\obj\Debug\netcoreapp2.0\site.pdb
