@@ -1,0 +1,17 @@
+C:\Users\savio\Desktop\Projeto\Identity\bin\Debug\netstandard2.0\Identity.deps.json
+C:\Users\savio\Desktop\Projeto\Identity\bin\Debug\netstandard2.0\Identity.dll
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.csproj.CoreCompileInputs.cache
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.AssemblyInfoInputs.cache
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.AssemblyInfo.cs
+C:\Users\savio\Desktop\Projeto\Identity\bin\Debug\netstandard2.0\Identity.pdb
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.dll
+C:\Users\savio\Desktop\Projeto\Identity\obj\Debug\netstandard2.0\Identity.pdb
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\bin\Debug\netstandard2.0\Identity.deps.json
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\bin\Debug\netstandard2.0\Identity.dll
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\bin\Debug\netstandard2.0\Identity.pdb
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\obj\Debug\netstandard2.0\Identity.csprojResolveAssemblyReference.cache
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\obj\Debug\netstandard2.0\Identity.csproj.CoreCompileInputs.cache
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\obj\Debug\netstandard2.0\Identity.AssemblyInfoInputs.cache
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\obj\Debug\netstandard2.0\Identity.AssemblyInfo.cs
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\obj\Debug\netstandard2.0\Identity.dll
+C:\Users\99003731\Desktop\Projeto-Sistema-de-Consultas-OnDemand-master\Identity\obj\Debug\netstandard2.0\Identity.pdb
