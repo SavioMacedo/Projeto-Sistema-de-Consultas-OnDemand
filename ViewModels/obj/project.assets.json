@@ -510,7 +510,7 @@
           }
         }
       },
-      "NETStandard.Library/2.0.1": {
+      "NETStandard.Library/2.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
@@ -1509,10 +1509,10 @@
         "version.txt"
       ]
     },
-    "NETStandard.Library/2.0.1": {
-      "sha512": "oA6nwv9MhEKYvLpjZ0ggSpb1g4CQViDVQjLUcDWg598jtvJbpfeP2reqwI1GLW2TbxC/Ml7xL6BBR1HmKPXlTg==",
+    "NETStandard.Library/2.0.0": {
+      "sha512": "7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
       "type": "package",
-      "path": "netstandard.library/2.0.1",
+      "path": "netstandard.library/2.0.0",
       "files": [
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -1633,7 +1633,7 @@
         "build/netstandard2.0/ref/netstandard.dll",
         "build/netstandard2.0/ref/netstandard.xml",
         "lib/netstandard1.0/_._",
-        "netstandard.library.2.0.1.nupkg.sha512",
+        "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
     },
@@ -3086,7 +3086,7 @@
       ]
     },
     "System.Security.Cryptography.Xml/4.4.2": {
-      "sha512": "q9Dren/YP5jhRCkDvLfuaPpMTQzP97ANvzq/OoGgwK8YdLRSTABS9oW5/23OKoM2DRCuBrh4qaecD2YNhPtuzQ==",
+      "sha512": "1m+fKVrApgKYMRuE0MF0vGjqy4XqAp1rCtyAzMXhJajMDDytMh/rHk9hp4M7KKk3QQZoWJUvyUY7xcw74w+JiQ==",
       "type": "package",
       "path": "system.security.cryptography.xml/4.4.2",
       "files": [
@@ -3365,27 +3365,30 @@
     ".NETStandard,Version=v2.0": [
       "Microsoft.AspNetCore.Identity >= 2.0.3",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 2.0.3",
-      "NETStandard.Library >= 2.0.1"
+      "NETStandard.Library >= 2.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jamile\\.nuget\\packages\\": {},
+    "C:\\Users\\99003731\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "C:\\Users\\jamile\\Desktop\\Projeto\\ViewModels\\ViewModels.csproj",
+      "projectUniqueName": "C:\\Users\\99003731\\Desktop\\Projeto-Sistema-de-Consultas-OnDemand-master\\ViewModels\\ViewModels.csproj",
       "projectName": "ViewModels",
-      "projectPath": "C:\\Users\\jamile\\Desktop\\Projeto\\ViewModels\\ViewModels.csproj",
-      "packagesPath": "C:\\Users\\jamile\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jamile\\Desktop\\Projeto\\ViewModels\\obj\\",
+      "projectPath": "C:\\Users\\99003731\\Desktop\\Projeto-Sistema-de-Consultas-OnDemand-master\\ViewModels\\ViewModels.csproj",
+      "packagesPath": "C:\\Users\\99003731\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\99003731\\Desktop\\Projeto-Sistema-de-Consultas-OnDemand-master\\ViewModels\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\jamile\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\99003731\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3393,6 +3396,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://nuget.mrs.com.br/nuget/": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3420,7 +3424,7 @@
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.1, )",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           }
         },
